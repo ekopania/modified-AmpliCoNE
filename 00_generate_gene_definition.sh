@@ -2,7 +2,7 @@
 ##PURPOSE: Generate gene definition files per chromosome for AmpliCoNE 
 # Job name:
 #SBATCH --job-name=gene_definition
-#SBATCH --output=gene_definition.pID97.chr14.log
+#SBATCH --output=gene_definition-%j.log
 #SBATCH --mail-type=ALL # Mail events (NONE, BEGIN, END, FAIL, ALL)
 ##SBATCH --mail-user=ekopania4@gmail.com # Where to send mail
 #SBATCH --cpus-per-task=1 # Number of cores per MPI rank (ie number of threads, I think)
@@ -27,8 +27,8 @@ echo "START	END	TYPE" > gene_definition_mm10.pID${pID}.chr${chr^^}.tab
 
 #get starts and stops for each control gene for chr
 echo "Looping through control genes..."
-cat ../control_genes.${chr^^}.txt | while read gene; do
-        zcat /mnt/beegfs/ek112884/REFERENCE_DIR/mm10.refGene.gtf.gz | grep ${gene} | grep -P "refGene\ttranscript" > temp.gtf
+cat REFS/control_genes.${chr^^}.txt | while read gene; do
+        zcat REFS/mm10.refGene.gtf.gz | grep ${gene} | grep -P "refGene\ttranscript" > temp.gtf
         cat temp.gtf | awk '{print $4 "\t" $5}' | uniq - > ${gene}.tab
         sed -i "s/$/\tCONTROL/" ${gene}.tab
         cat gene_definition_mm10.pID${pID}.chr${chr^^}.tab ${gene}.tab > temp.tab
@@ -40,7 +40,7 @@ done
 
 #parse blast hit table for each amplicon family for $chr
 echo "Looping through ampliconic gene families..."
-ls /mnt/beegfs/ek112884/cnvs/*${chr}*_blast_results_1-ResultsTable-Mus_musculus_Tools_Blast_.csv | while read file; do
+ls PARALOG_CSV/*${chr}*_blast_results_1-ResultsTable-Mus_musculus_Tools_Blast_.csv | while read file; do
 	gene_fam=$(echo "${file}" | cut -d "/" -f 6 | cut -d "_" -f 1)
 	echo ${gene_fam}
 	#Gets starts and end positions for genes with percent ID > pID and evalue = 0.0
