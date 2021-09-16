@@ -1,8 +1,8 @@
 #!/bin/bash
 ##PURPOSE: Use # times each kmer in gene maps to identify informative sites in mouse genome
 # Job name:
-#SBATCH --job-name=chr14_get_info_sites
-#SBATCH --output=get_info_sites.chr14.log
+#SBATCH --job-name=get_info_sites
+#SBATCH --output=get_info_sites-%j.log
 #SBATCH --mail-type=ALL # Mail events (NONE, BEGIN, END, FAIL, ALL)
 ##SBATCH --mail-user=ekopania4@gmail.com # Where to send mail
 #SBATCH --cpus-per-task=8 # Number of cores per MPI rank (ie number of threads, I think)

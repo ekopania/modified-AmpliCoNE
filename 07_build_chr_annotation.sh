@@ -2,7 +2,7 @@
 ##PURPOSE: Generate gene definition files per chromosome for AmpliCoNE
 # Job name:
 #SBATCH --job-name=customMethod_build_chr_annotation
-#SBATCH --output=build_chr_annotation.OWN_METHOD.chr14.log
+#SBATCH --output=build_chr_annotation-%j.log
 #SBATCH --mail-type=ALL # Mail events (NONE, BEGIN, END, FAIL, ALL)
 ##SBATCH --mail-user=ekopania4@gmail.com # Where to send mail
 #SBATCH --cpus-per-task=1 # Number of cores per MPI rank (ie number of threads, I think)
@@ -18,11 +18,15 @@
 ## Command(s) to run:
 chr="14"
 echo "Building ${chr} chromosome annotation..."
+ref_fa="mm10.fa" #Name of reference fasta file
+map_bed="mm10_mappability.bed" #Name of mappability bed file
+
 #Amplicone program looks for file called "informative_sites.tab"; link this to the informative sites file for the chromosome you are working on
 rm informative_sites.tab
 ln -s "${chr}_Informative_101bp.tab" informative_sites.tab
 #Run Amplicone program for generating annotation
-~/software/AmpliCoNE-tool-numMappingVersion/AmpliCoNE-build.sh -c chr${chr} -i ../mm10.fa -m ../mm10_mappability.bed -r ../RepeatMaskerOutput/chr${chr}.fa.out -t ../TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID97.chr${chr}.tab -o chr${chr}_annotation.tab -s 7 #Start Amplicone-build.sh from step 7, building the annotation
+AmpliCoNE_scripts/AmpliCoNE-build.sh -c chr${chr} -i ${ref_fa} -m ${map_bed} -r REFS/RepeatMaskerOutput/chr${chr}.fa.out -t REFS/TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID97.chr${chr}.tab -o chr${chr}_annotation.tab -s 7 #Start Amplicone-build.sh from step 7, building the annotation
+
 #Change name of Amplicone output file
 sed 's/\.0//' chr${chr}_annotation.tab > chr${chr}_annotation.temp.tab
 sed 's/\.0$//' chr${chr}_annotation.temp.tab > chr${chr}_annotation.OWN_METHOD.kmerStartOnly.tab
