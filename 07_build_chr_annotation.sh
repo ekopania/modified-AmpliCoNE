@@ -16,6 +16,7 @@
 ##SBATCH -w, --nodelist=compute-0-8 # run on a specific node
 #
 ## Command(s) to run:
+amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 chr="14"
 echo "Building ${chr} chromosome annotation..."
 ref_fa="mm10.fa" #Name of reference fasta file
@@ -25,7 +26,7 @@ map_bed="mm10_mappability.bed" #Name of mappability bed file
 rm informative_sites.tab
 ln -s "${chr}_Informative_101bp.tab" informative_sites.tab
 #Run Amplicone program for generating annotation
-AmpliCoNE_scripts/AmpliCoNE-build.sh -c chr${chr} -i ${ref_fa} -m ${map_bed} -r REFS/RepeatMaskerOutput/chr${chr}.fa.out -t REFS/TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID97.chr${chr}.tab -o chr${chr}_annotation.tab -s 7 #Start Amplicone-build.sh from step 7, building the annotation
+${amp_path}AmpliCoNE_scripts/AmpliCoNE-build.sh -c chr${chr} -i ${ref_fa} -m ${map_bed} -r REFS/RepeatMaskerOutput/chr${chr}.fa.out -t REFS/TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID97.chr${chr}.tab -o chr${chr}_annotation.tab -s 7 #Start Amplicone-build.sh from step 7, building the annotation
 
 #Change name of Amplicone output file
 sed 's/\.0//' chr${chr}_annotation.tab > chr${chr}_annotation.temp.tab

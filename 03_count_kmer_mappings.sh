@@ -16,6 +16,7 @@
 ##SBATCH -w, --nodelist=compute-0-4 # run on a specific node
 #
 ## Command(s) to run:
+amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 chr="14"
 #Loop through each ampliconic gene
 cat ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} amplicons
@@ -46,11 +47,11 @@ cat ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} amplicons
 	#Loop through all kmers; count number of times each maps
 	echo "Counting the number of times each kmer maps"
 	rm "${gene}.kmer_mapping_counts.txt"
-	python parallel_cmd_generator.kmer_counts.py "${gene}" > parallel_cmds.kmer_counts.sh
+	python ${amp_path}parallel_cmd_generator.kmer_counts.py "${gene}" > parallel_cmds.kmer_counts.sh
 	parallel -j 32 < parallel_cmds.kmer_counts.sh
 
 	#Plot histogram of kmer mapping counts
-	Rscript 04_plot_kmer_mappings.r "${gene}.kmer_mapping_counts.txt"
+	${amp_path}Rscript 04_plot_kmer_mappings.r "${gene}.kmer_mapping_counts.txt"
 done
 
 echo "Done!"

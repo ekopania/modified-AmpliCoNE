@@ -16,6 +16,7 @@
 ##SBATCH -w, --nodelist=compute-0-4 # run on a specific node
 #
 ## Command(s) to run:
+amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 chr="14" #"X" #"Y" #"5" #"14"
 chr_len=$(cat "chr${chr}_length.txt") #171031299 #91744698 #151834684
 
@@ -60,6 +61,6 @@ samtools merge -@ 8 -b "chr${chr}_101bp_bowtie2_k500.file_list.txt" "chr${chr}_1
 echo "Getting informative sites..."
 #python 06_parse_informative_sites.py --GENEFAM ${sly_start} --LENGTH ${chr_len}
 #python 06_parse_informative_sites.full_bam.py -s "chr${chr}_101bp_bowtie2_k500.sam" -g gene_definition_mm10.pID95.chrY.tab -c ${chr} -l ${chr_len}
-python 06_parse_informative_sites.full_bam.py -s "chr${chr}_101bp_bowtie2_k500.sam" -c ${chr} -l ${chr_len}
+python ${amp_path}06_parse_informative_sites.full_bam.py -s "chr${chr}_101bp_bowtie2_k500.sam" -c ${chr} -l ${chr_len}
 
 echo "Done!"

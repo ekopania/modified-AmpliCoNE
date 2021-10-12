@@ -12,10 +12,13 @@
 #SBATCH --mem=96000 #Not sure if I should mess with these...
 # Partition:
 ## Since you want to run it on 72 cores, the partition good_cpu has nodes with 72 cores.
-#SBATCH --partition=good_lab_cpu
+#SBATCH --partition=good_lab_reincarnation
 ##SBATCH -w, --nodelist=compute-0-4 # run on a specific node
 #
 ## Command(s) to run:
+#include path to AmpliCoNE scripts
+amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
+
 #variable for chromosome
 chr="14" #lower case
 #variable for percent ID
@@ -44,7 +47,7 @@ ls PARALOG_CSV/*${chr}*_blast_results_1-ResultsTable-Mus_musculus_Tools_Blast_.c
 	gene_fam=$(echo "${file}" | cut -d "/" -f 6 | cut -d "_" -f 1)
 	echo ${gene_fam}
 	#Gets starts and end positions for genes with percent ID > pID and evalue = 0.0
-	Rscript 01_parse_blast_hittable.r ${file} ${chr^^} ${pID}
+	Rscript ${amp_path}01_parse_blast_hittable.r ${file} ${chr^^} ${pID}
 	#Append gene family name in all caps (^^)
 	sed -i "s/$/\t${gene_fam^^}/" temp_starts_ends.txt
 	cat gene_definition_mm10.pID${pID}.chr${chr^^}.tab temp_starts_ends.txt > temp.tab

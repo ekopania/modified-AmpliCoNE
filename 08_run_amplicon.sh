@@ -16,6 +16,8 @@
 ##SBATCH -w, --nodelist=compute-0-4 # run on a specific node
 #
 ## Command(s) to run:
+amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
+
 chr="14"
 chr_len=$(cat "chr${chr}_length.txt")
 pID=97
@@ -27,7 +29,7 @@ for file in ${my_bams[@]}; do
 	name=$(echo "${file}" | cut -d "/" -f 8 | cut -d "." -f 1)
 #	name=$(echo "${file}" | cut -d "/" -f 9 | cut -d "." -f 1)
 	echo "Working on sample: ${name}"
-	python AmpliCoNE_scripts/AmpliCoNE-count.py --GENE_DEF gene_definition_mm10.pID${pID}.chr${chr}.tab  --ANNOTATION chr${chr}_annotation.OWN_METHOD.kmerStartOnly.tab --BAM ${file} --CHR ${chr} --LENGTH ${chr_len} --OUTPUT "${name}.chr${chr}.kmerStartOnly.pID${pID}" 
+	python ${amp_path}AmpliCoNE_scripts/AmpliCoNE-count.py --GENE_DEF gene_definition_mm10.pID${pID}.chr${chr}.tab  --ANNOTATION chr${chr}_annotation.OWN_METHOD.kmerStartOnly.tab --BAM ${file} --CHR ${chr} --LENGTH ${chr_len} --OUTPUT "${name}.chr${chr}.kmerStartOnly.pID${pID}" 
 done
 
 echo "Done!"
