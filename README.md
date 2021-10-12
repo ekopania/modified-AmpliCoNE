@@ -15,6 +15,4 @@ Path to modified AmpliCoNE software is currently hardcoded and must be edited at
 
 The AmpliCoNE bin/ directory must be in the same directory from which you are running the programs. Recommend using symbolic links:
 
-'''
-ln -s <path_to_modified-AmpliCoNE>/AmpliCoNE_scripts/bin/* <directory_running_AmpliCoNE_from>
-'''
+    ln -s <path_to_modified-AmpliCoNE>/AmpliCoNE_scripts/bin/* <directory_running_AmpliCoNE_from>
