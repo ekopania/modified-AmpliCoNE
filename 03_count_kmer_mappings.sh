@@ -51,7 +51,7 @@ cat ${amp_path}ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} 
 	parallel -j 32 < parallel_cmds.kmer_counts.sh
 
 	#Plot histogram of kmer mapping counts
-	${amp_path}Rscript 04_plot_kmer_mappings.r "${gene}.kmer_mapping_counts.txt"
+	Rscript ${amp_path}04_plot_kmer_mappings.r "${gene}.kmer_mapping_counts.txt"
 done
 
 echo "Done!"
