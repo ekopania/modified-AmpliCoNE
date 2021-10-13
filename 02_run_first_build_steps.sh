@@ -17,7 +17,7 @@
 #
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
-chr="5"
+chr="14"
 ref_fa="mm10.fa"
 map_bed="mm10_mappability.bed"
 echo "Running early steps of Amplicone-build for chromosome ${chr}..."

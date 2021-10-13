@@ -2,7 +2,7 @@
 ##PURPOSE: Loop through Bowtie mapping output and count number of times each kmer mapped
 # Job name:
 #SBATCH --job-name=count_kmer_mappings
-#SBATCH --output=count_kmer_mappings-%jlog
+#SBATCH --output=count_kmer_mappings-%j.log
 #SBATCH --mail-type=ALL # Mail events (NONE, BEGIN, END, FAIL, ALL)
 ##SBATCH --mail-user=ekopania4@gmail.com # Where to send mail
 #SBATCH --cpus-per-task=1 # Number of cores per MPI rank (ie number of threads, I think)
@@ -19,7 +19,7 @@
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 chr="14"
 #Loop through each ampliconic gene
-cat ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} amplicons
+cat ${amp_path}ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} amplicons
 	#echo "${line}"
 	gene=$(echo "${line}" | cut -f 6)
 	echo "${gene}"
