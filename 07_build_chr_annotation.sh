@@ -17,7 +17,7 @@
 #
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
-chr="14"
+chr="X"
 echo "Building ${chr} chromosome annotation..."
 ref_fa="mm10.fa" #Name of reference fasta file
 map_bed="mm10_mappability.bed" #Name of mappability bed file

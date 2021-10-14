@@ -20,7 +20,7 @@
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 
 #variable for chromosome
-chr="14" #lower case
+chr="x" #lower case
 #variable for percent ID
 pID=97
 echo "These are the chromosome and percent ID for this run: ${chr} ${pID}"
@@ -44,7 +44,7 @@ done
 #parse blast hit table for each amplicon family for $chr
 echo "Looping through ampliconic gene families..."
 ls PARALOG_CSV/*${chr}*_blast_results_1-ResultsTable-Mus_musculus_Tools_Blast_.csv | while read file; do
-	gene_fam=$(echo "${file}" | cut -d "/" -f 6 | cut -d "_" -f 1)
+	gene_fam=$(echo "${file}" | cut -d "/" -f 2 | cut -d "_" -f 1)
 	echo ${gene_fam}
 	#Gets starts and end positions for genes with percent ID > pID and evalue = 0.0
 	Rscript ${amp_path}01_parse_blast_hittable.r ${file} ${chr^^} ${pID}

@@ -17,7 +17,7 @@
 #
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
-chr="14"
+chr="X"
 #Loop through each ampliconic gene
 cat ${amp_path}ampliconic_genes.chr${chr}.bed | while read line; do #All ${chr} amplicons
 	#echo "${line}"

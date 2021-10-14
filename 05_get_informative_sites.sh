@@ -17,7 +17,7 @@
 #
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
-chr="14" #"X" #"Y" #"5" #"14"
+chr="X" #"X" #"Y" #"5" #"14"
 chr_len=$(cat "chr${chr}_length.txt") #171031299 #91744698 #151834684
 
 #Append chromosome to gene names in file names for autosomal ampliconic families

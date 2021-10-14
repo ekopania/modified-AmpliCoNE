@@ -18,7 +18,7 @@
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 
-chr="14"
+chr="X"
 chr_len=$(cat "chr${chr}_length.txt")
 pID=97
 echo "Running amplicone for chromosome ${chr} of length ${chr_len} and percent ID ${pID}"
