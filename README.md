@@ -16,6 +16,8 @@ In this modified version of AmpliCoNE, we still map k-mers of ampliconic genes b
 * Install GEM binaries from https://sourceforge.net/projects/gemlibrary/files/gem-library/Binary%20pre-release%203/
 
 ### Running scripts
+See AmpliCoNE GitHub for details on installing dependencies and setting up conda environment.
+
 Requires a reference file in fasta format, currently hardcoded as "mm10.fa"
 
 Reference file must be indexed using bowtie2-index and named with the prefix "bowtie2_index" (ex: bowtie2_index.1.bt2)
