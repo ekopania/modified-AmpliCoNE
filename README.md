@@ -1,5 +1,6 @@
 # modified-AmpliCoNE
 This is a modification to the AmpliCoNE tool: https://github.com/makovalab-psu/AmpliCoNE-tool  
+Please see Vegesna et al. 2019 for the publication on AmpliCoNE: https://doi.org/10.1371/journal.pgen.1008369
 
 Note: I did NOT write AmpliCoNE. I made these modifications so that AmpliCoNE would be compatible with the mouse genome.
 
@@ -16,7 +17,8 @@ In this modified version of AmpliCoNE, we still map k-mers of ampliconic genes b
 * Install GEM binaries from https://sourceforge.net/projects/gemlibrary/files/gem-library/Binary%20pre-release%203/
 
 ### Running scripts
-See AmpliCoNE GitHub for details on installing dependencies and setting up conda environment.
+See AmpliCoNE GitHub for details on installing dependencies and setting up conda environment.  
+These scripts are written to run using slurm on the Griz Shared Computing Cluster at the University of Montana. SBATCH commands at the beginning of each script will need to be modified for other computers or clusters.
 
 Requires a reference file in fasta format, currently hardcoded as "mm10.fa"
 

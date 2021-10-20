@@ -12,7 +12,7 @@
 #SBATCH --mem=128G #Not sure if I should mess with these...
 # Partition:
 ## Since you want to run it on 72 cores, the partition good_cpu has nodes with 72 cores.
-#SBATCH --partition=good_lab_reincarnation
+#SBATCH --partition=good_lab_cpu
 ##SBATCH -w, --nodelist=compute-0-8 # run on a specific node
 #
 ## Command(s) to run:
