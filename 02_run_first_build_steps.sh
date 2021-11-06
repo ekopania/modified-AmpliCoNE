@@ -18,11 +18,12 @@
 ## Command(s) to run:
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 chr="X"
+pID=97
 ref_fa="mm10.fa"
 map_bed="mm10_mappability.bed"
 echo "Running early steps of Amplicone-build for chromosome ${chr}..."
 
 #Run Amplicone program for generating annotation
-${amp_path}AmpliCoNE_scripts/AmpliCoNE-build.sh -c chr${chr} -i ${ref_fa} -m ${map_bed} -r REFS/RepeatMaskerOutput/chr${chr}.fa.out -t REFS/TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID97.chr${chr}.tab -o chr${chr}_annotation.tab -s 1 #Start at build step 1
+${amp_path}AmpliCoNE_scripts/AmpliCoNE-build.sh -c chr${chr} -i ${ref_fa} -m ${map_bed} -r REFS/RepeatMaskerOutput/chr${chr}.fa.out -t REFS/TandemRepeatFinderOutput/chr${chr}.bed -g gene_definition_mm10.pID${pID}.chr${chr}.tab -o chr${chr}_annotation.pID${pID}.tab -s 1 #Start at build step 1
 
 echo "Done!"

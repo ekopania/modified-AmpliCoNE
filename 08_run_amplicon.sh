@@ -29,7 +29,7 @@ for file in ${my_bams[@]}; do
 	name=$(echo "${file}" | cut -d "/" -f 8 | cut -d "." -f 1)
 #	name=$(echo "${file}" | cut -d "/" -f 9 | cut -d "." -f 1)
 	echo "Working on sample: ${name}"
-	python ${amp_path}AmpliCoNE_scripts/AmpliCoNE-count.py --GENE_DEF gene_definition_mm10.pID${pID}.chr${chr}.tab  --ANNOTATION chr${chr}_annotation.OWN_METHOD.kmerStartOnly.tab --BAM ${file} --CHR ${chr} --LENGTH ${chr_len} --OUTPUT "${name}.chr${chr}.kmerStartOnly.pID${pID}" 
+	python ${amp_path}AmpliCoNE_scripts/AmpliCoNE-count.py --GENE_DEF gene_definition_mm10.pID${pID}.chr${chr}.tab  --ANNOTATION chr${chr}_annotation.pID${pID}.OWN_METHOD.kmerStartOnly.tab --BAM ${file} --CHR ${chr} --LENGTH ${chr_len} --OUTPUT "${name}.chr${chr}.kmerStartOnly.pID${pID}" 
 done
 
 echo "Done!"
