@@ -16,6 +16,9 @@
 ##SBATCH -w, --nodelist=compute-0-4 # run on a specific node
 #
 ## Command(s) to run:
+source ~/software/anaconda/anaconda3/bin/activate
+conda activate amplicone
+
 amp_path="/home/ek112884/software/modified-AmpliCoNE/" #Path to modified AmpliCoNE software
 
 chr="X"
